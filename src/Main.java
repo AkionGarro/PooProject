@@ -7,15 +7,8 @@ public class Main {
         ArrayList<Curso> cursos = new ArrayList<Curso>();
         ArrayList<Carrera> carreras = new ArrayList<Carrera>();
         ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
-
-//        Carrera c1 = new Carrera("Computadores","CE", (byte) 12);
-//        Carrera c2 = new Carrera("Admi Tecnologías","TIC", (byte) 12);
-//        Carrera c3 = new Carrera("Computacion","IC", (byte) 12);
-//        carreras.add(c1);
-//        carreras.add(c2);
-//        carreras.add(c3);
-//        Curso cs1 = new Curso("Compi",(byte) 4,(byte) 4,"Martes 12 md","Martes 4pm","Cursando",carreras,51);
-//        cs1.showData();
+        ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+        Curso [][] horario = new Curso[12][7];
 
         int option = 1;
 
@@ -24,10 +17,13 @@ public class Main {
             System.out.println("------------Menu opciones------------");
             System.out.println("1.Registrar de carreras");
             System.out.println("2.Registro de cursos");
-            System.out.println("3.Mostrar Carreras");
-            System.out.println("4.Mostrar Cursos");
+            System.out.println("3.Mostrar Carreras Disponibles");
+            System.out.println("4.Mostrar Cursos Disponibles");
             System.out.println("5.Ingresar Estudiantes");
-
+            System.out.println("6.Ingresar Cursos a un Semestre");    //--Esto debe de cambiarse a la clase
+            System.out.println("7.Mostrar Cursos de un Semestre");      //--Esto debe de cambiarse a la clase
+            System.out.println("8.Manipular estados de los Cursos de un Semestre"); //--Esto debe de cambiarse a la clase
+            System.out.println("9.Obtener cursos del semestre actual");
 
             System.out.println("Digite una opcion: ");
             option = sc2.nextInt();
@@ -52,6 +48,20 @@ public class Main {
                 case 5:
                     Estudiante est = ingresarEstudiantes(carreras);
                     estudiantes.add(est);
+                    break;
+                case 6:
+                    Estudiante e1 = seleccionarEstudiantes(estudiantes);
+                    ingresarCursosSemestre(cursos,e1);
+                    break;
+                case 7:
+                    Estudiante e2 = seleccionarEstudiantes(estudiantes);
+                    seleccionarCursosSemestre(e2);
+
+                case 8:
+                    Estudiante e3 = seleccionarEstudiantes(estudiantes);
+                    ArrayList<Curso> s1 = seleccionarCursosSemestre(e3);
+                    manipularEstadoCursosSemestre(s1);
+
                     break;
 
                 case 0:
@@ -182,22 +192,21 @@ public class Main {
 
     }
 
-    public static void ingresarCursosSemestre(ArrayList<Curso> disponibles,Estudiante estudiante) {
+    public static void ingresarCursosSemestre(ArrayList<Curso> disponibles, Estudiante estudiante) {
+
+        boolean flag =true;
         Scanner sctemp = new Scanner(System.in);
-
         ArrayList<Curso> cursosAgregar = new ArrayList<Curso>();
-        seleccionarCursos(disponibles);
-        System.out.println("Digite el nombre del estudiante:");
-        nombreCompleto = sctemp.nextLine();
-        System.out.println("Digite el nombre de usuario:");
-        usuario = sctemp.nextLine();
-        System.out.println("Digite la contrasena:");
-        contrasena = sctemp.nextLine();
-        System.out.println("------------Carreras disponibles-------------");
-        carrerasEstudiante = seleccionarCarreras(carreras);
+        cursosAgregar = seleccionarCursos(disponibles);
+        for(int i=0;i<cursosAgregar.size();i++){
+            if(estudiante.validarCursoCarrera(cursosAgregar.get(i)).equals(false)){
+                flag=false;
+            }
+        }
+        if(flag==true){
+            estudiante.addCursoSemestre(cursosAgregar);
+        }
 
-        Estudiante est = new Estudiante(nombreCompleto, usuario, contrasena, carrerasEstudiante);
-        return est;
 
     }
 
@@ -207,7 +216,7 @@ public class Main {
             System.out.println("i: " + i + " Nombre:" + cursos.get(i).getNombre());
         }
         Scanner sctemp = new Scanner(System.in);
-        ArrayList<Curso> tempCursos= new  ArrayList<Curso>();
+        ArrayList<Curso> tempCursos = new ArrayList<Curso>();
         int n = 0;
         System.out.println("Digite la cantidad de cursos que desea agregar:");
         n = sctemp.nextInt();
@@ -222,7 +231,74 @@ public class Main {
 
     }
 
+    public static Estudiante seleccionarEstudiantes(ArrayList<Estudiante> estudiantes) {
+        for (int i = 0; i < estudiantes.size(); i++) {
+            System.out.println("i: " + i + " Nombre:" + estudiantes.get(i).getNombreCompleto());
+        }
+        Scanner sctemp = new Scanner(System.in);
+        Estudiante tempEstudiante;
+        int n = 0;
+        System.out.println("El numero del estudiante a elegir:");
+        n = sctemp.nextInt();
+        sctemp.nextLine();
+        tempEstudiante = estudiantes.get(n);
+        return tempEstudiante;
 
+    }
+
+
+    public static ArrayList<Curso> seleccionarCursosSemestre(Estudiante estudiante) {
+        Scanner sctemp = new Scanner(System.in);
+        int n = 0;
+        System.out.println("-------------Semestres disponibles-----------------");
+        for(int i=0;i<estudiante.getSemestre().size();i++){
+            System.out.println("Semestre : "+i);
+        }
+        System.out.println("");
+        System.out.println("Digite el semestre que desea seleccionar: ");
+        n =sctemp.nextInt();
+        for(int i=0;i<estudiante.getSemestre().get(n).size();i++){
+            System.out.println("Curso del semestre "+n+" --->"+estudiante.getSemestre().get(n).get(i).getNombre());
+        }
+
+        return estudiante.getSemestre().get(n);
+
+    }
+
+    public static ArrayList<Curso> seleccionarCursosSemestreActual(Estudiante estudiante) {
+
+        System.out.println("-------------Cursos semestre actual-----------------");
+        int size = estudiante.getSemestre().size() - 1 ;
+        for(int i=0;i<estudiante.getSemestre().get(size).size();i++){
+            System.out.println("Curso : "+estudiante.getSemestre().get(size).get(i).getNombre());
+        }
+
+        return estudiante.getSemestre().get(size);
+
+    }
+
+
+    public static void manipularEstadoCursosSemestre(ArrayList<Curso> cursos) {
+        Scanner sctemp = new Scanner(System.in);
+        int n = 0;
+        String estado="";
+        System.out.println("-------------Cursos Disponibles-----------------");
+        for(int i=0;i<cursos.size();i++){
+            System.out.println("i :" +i+ "Nombre: "+ cursos.get(i).getNombre()) ;
+        }
+        System.out.println("");
+        System.out.println("Digite el curso que desea cambiar de estado: ");
+        n =sctemp.nextInt();
+        sctemp.nextLine();
+        System.out.println("Digite al estado que desea cambiar: ");
+        estado=sctemp.nextLine();
+        sctemp.nextLine();
+
+        Curso c1 = cursos.get(n);
+        c1.setEstado(estado);
+
+
+    }
 
 
 

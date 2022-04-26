@@ -16,7 +16,7 @@ public class Estudiante {
   private String contrasena;
 
   private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
-  private ArrayList<Curso> cursos = new ArrayList<Curso>();
+  //private ArrayList<Curso> cursosActuales = new ArrayList<Curso>();
   private ArrayList<Actividad> actividades = new ArrayList<Actividad>();
   private ArrayList< ArrayList<Curso>> semestre = new ArrayList<ArrayList<Curso>>();
   //
@@ -31,9 +31,16 @@ public class Estudiante {
   }
 
 
-  //
+  public Estudiante() {
+  }
+
+//
   // Methods
   //
+
+  public ArrayList<ArrayList<Curso>> getSemestre() {
+    return semestre;
+  }
 
 
   //
@@ -147,7 +154,19 @@ public class Estudiante {
    */
   public Boolean validarCursoCarrera(Curso curso)
   {
-    return false;
+    boolean flag= false;
+    ArrayList<Carrera> carrerasCurso = curso.getCarrerasList();
+
+    for(int i=0;i<carrerasCurso.size();i++){
+      for(int j=0;j<this.carreras.size();j++){
+        if(carrerasCurso.get(i).getNombre().toLowerCase().equals(this.carreras.get(j).getNombre().toLowerCase())){
+          flag=true;
+        }else{
+          flag=false;
+        }
+      }
+    }
+    return flag;
   }
 
 
@@ -213,11 +232,13 @@ public class Estudiante {
     this.semestre.add(curso);
   }
 
-  public void getCursosSemestr(int semestre){
+  public void getCursosSemestre(int semestre){
 
     for(int i=0;i<this.semestre.get(semestre).size();i++){
       System.out.println(this.semestre.get(semestre).get(i).getNombre());
     }
 
   }
+
+
 }

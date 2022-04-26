@@ -191,8 +191,8 @@ public class Curso {
      *
      * @return List of Carreras objects held by carrerasVector
      */
-    public List getCarrerasList() {
-        return (List) carrerasLista;
+    public ArrayList<Carrera> getCarrerasList() {
+        return this.carrerasLista;
     }
 
     public void showData() {

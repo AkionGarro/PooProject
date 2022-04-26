@@ -44,10 +44,12 @@ public class Carrera {
      *
      * @return the value of listaNombres
      */
-    public void getListaNombres() {
-        for (int i = 0; i < this.nombresLista.size(); i++) {
+    public static void getListaNombres() {
+        System.out.println("----------------Nombres de las carreras disponibles--------------");
+        for (int i = 0; i < nombresLista.size(); i++) {
             System.out.println(nombresLista.get(i).toString());
         }
+        System.out.println("-----------------------------------------------------------------");
     }
 
     /**

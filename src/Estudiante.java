@@ -14,12 +14,23 @@ public class Estudiante {
   private String nombreCompleto;
   private String usuario;
   private String contrasena;
-  
+
+  private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
+  private ArrayList<Curso> cursos = new ArrayList<Curso>();
+  private ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+  private ArrayList< ArrayList<Curso>> semestre = new ArrayList<ArrayList<Curso>>();
   //
   // Constructors
   //
-  public Estudiante () { };
-  
+
+  public Estudiante(String nombreCompleto, String usuario, String contrasena, ArrayList<Carrera> carreras) {
+    this.nombreCompleto = nombreCompleto;
+    this.usuario = usuario;
+    this.contrasena = contrasena;
+    this.carreras = carreras;
+  }
+
+
   //
   // Methods
   //
@@ -197,4 +208,16 @@ public class Estudiante {
   }
 
 
+
+  public void addCursoSemestre(ArrayList<Curso> curso) {
+    this.semestre.add(curso);
+  }
+
+  public void getCursosSemestr(int semestre){
+
+    for(int i=0;i<this.semestre.get(semestre).size();i++){
+      System.out.println(this.semestre.get(semestre).get(i).getNombre());
+    }
+
+  }
 }

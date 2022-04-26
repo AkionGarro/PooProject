@@ -14,8 +14,8 @@ public class Curso {
     private String nombre;
     private byte creditos;
     private byte horasLectivas;
-    private String horaInicio;
-    private String horaFinal;
+    private byte horaInicio;
+    private byte horaFinal;
     private String estado;
     public ArrayList<Carrera> carrerasLista = new ArrayList<Carrera>();
     private int numeroGrupo;
@@ -26,7 +26,7 @@ public class Curso {
     //
 
 
-    public Curso(String nombre, byte creditos, byte horasLectivas, String horaInicio, String horaFinal, String estado,ArrayList<Carrera> carreras,int numeroGrupo) {
+    public Curso(String nombre, byte creditos, byte horasLectivas, byte horaInicio, byte horaFinal, String estado,ArrayList<Carrera> carreras,int numeroGrupo) {
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasLectivas = horasLectivas;
@@ -110,7 +110,7 @@ public class Curso {
      *
      * @param newVar the new value of horaInicio
      */
-    public void setHoraInicio(String newVar) {
+    public void setHoraInicio(byte newVar) {
         horaInicio = newVar;
     }
 
@@ -119,7 +119,7 @@ public class Curso {
      *
      * @return the value of horaInicio
      */
-    public String getHoraInicio() {
+    public byte getHoraInicio() {
         return horaInicio;
     }
 
@@ -128,7 +128,7 @@ public class Curso {
      *
      * @param newVar the new value of horaFinal
      */
-    public void setHoraFinal(String newVar) {
+    public void setHoraFinal(byte newVar) {
         horaFinal = newVar;
     }
 
@@ -137,7 +137,7 @@ public class Curso {
      *
      * @return the value of horaFinal
      */
-    public String getHoraFinal() {
+    public byte getHoraFinal() {
         return horaFinal;
     }
 

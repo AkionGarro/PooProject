@@ -310,20 +310,20 @@ public class Estudiante {
     }
 
 
-    for(int i=0;i<this.actividades.size();i++){
+    for(int i=0;i<this.actividades.size();i++) {
       Actividad tempAct = this.actividades.get(i);
-      byte posActual=tempAct.getHoraInicio();
+      byte posActual = tempAct.getHoraInicio();
       byte posFinal = tempAct.getHoraFinal();
-      byte dia =tempAct.getDia();
-      for(byte j=posActual;j<posFinal;j++){
-        if(this.semana[j][dia]==null){
-          this.semana[j][dia] = "Actividad "+tempAct.getNombre();
+      byte dia = tempAct.getDia();
+      for (byte j = posActual; j < posFinal; j++) {
+        if (this.semana[j][dia] == null) {
+          this.semana[j][dia] = "Actividad " + tempAct.getNombre();
           cont++;
-        }else{
+        } else {
           System.out.println("Se presenta un choque de horario");
         }
       }
-
+    }
     for(int i=0;i<7;i++){
       System.out.println("Dia numero: "+(i+1));
       for(int j=0;j<12;j++){

@@ -12,14 +12,14 @@ public class Evaluaciones extends Actividad {
   private String tipo;
   private byte horaInicio;
   private byte horaFinal;
-  private int dia;
+  private byte dia;
   private Curso cursoAsociado;
   
   //
   // Constructors
   //
 
-  public Evaluaciones(String nombre, String tipo, byte horaInicio, byte horaFinal, int dia, Curso cursoAsociado) {
+  public Evaluaciones(String nombre, String tipo, byte horaInicio, byte horaFinal, byte dia, Curso cursoAsociado) {
     super(nombre);
     this.tipo = tipo;
     this.horaInicio = horaInicio;
@@ -85,11 +85,13 @@ public class Evaluaciones extends Actividad {
     this.horaFinal = horaFinal;
   }
 
-  public int getDia() {
+  @Override
+  public byte getDia() {
     return dia;
   }
 
-  public void setDia(int dia) {
+  @Override
+  public void setDia(byte dia) {
     this.dia = dia;
   }
 }

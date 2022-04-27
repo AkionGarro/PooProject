@@ -127,6 +127,7 @@ public class Main {
             System.out.println("11.Registrar actividades");
             System.out.println("12.REPORTE semanal");
             System.out.println("13.REPORTE DIA");
+            System.out.println("14.REPORTE Tiempo Disponible Semanal");
 
             System.out.println("Digite una opcion: ");
             option = sc2.nextInt();
@@ -193,6 +194,11 @@ public class Main {
                 case 13:
                     Estudiante report1 = seleccionarEstudiantes(estudiantes);
                     report1.reporteDia();
+                    break;
+
+                case 14:
+                    Estudiante report2 = seleccionarEstudiantes(estudiantes);
+                    report2.reporteTiempoDisponibleSemana();
                     break;
 
 

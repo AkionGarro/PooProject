@@ -6,384 +6,430 @@ import java.util.*;
  * Class Estudiante
  */
 public class Estudiante {
-  public static final String ANSI_RESET = "\u001B[0m";
-  public static final String ANSI_BLACK = "\u001B[30m";
-  public static final String ANSI_RED = "\u001B[31m";
-  public static final String ANSI_GREEN = "\u001B[32m";
-  public static final String ANSI_YELLOW = "\u001B[33m";
-  public static final String ANSI_BLUE = "\u001B[34m";
-  public static final String ANSI_PURPLE = "\u001B[35m";
-  public static final String ANSI_CYAN = "\u001B[36m";
-  public static final String ANSI_WHITE = "\u001B[37m";
-  //
-  // Fields
-  //
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+    //
+    // Fields
+    //
 
-  private String nombreCompleto;
-  private String usuario;
-  private String contrasena;
+    private String nombreCompleto;
+    private String usuario;
+    private String contrasena;
+    int clases = 0;
+    int recreativa = 0;
+    int actCurso = 0;
+    int evaluaciones = 0;
+
+    private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
+    private ArrayList<Curso> cursosActuales = new ArrayList<Curso>();
+    private ArrayList<Actividad> actividades = new ArrayList<Actividad>();
+    private ArrayList<ArrayList<Curso>> semestre = new ArrayList<ArrayList<Curso>>();
+    private String[][] semana = new String[12][7];
+    ArrayList<String[][]> semanas = new ArrayList<String[][]>();
+    //
+    // Constructors
+    //
+
+    public Estudiante(String nombreCompleto, String usuario, String contrasena, ArrayList<Carrera> carreras) {
+        this.nombreCompleto = nombreCompleto;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.carreras = carreras;
+    }
 
 
-  private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
-  private ArrayList<Curso> cursosActuales = new ArrayList<Curso>();
-  private ArrayList<Actividad> actividades = new ArrayList<Actividad>();
-  private ArrayList<ArrayList<Curso>> semestre = new ArrayList<ArrayList<Curso>>();
-  private String[][] semana = new String[12][7];
-  ArrayList<String[][]> semanas = new ArrayList<String[][]>();
-  //
-  // Constructors
-  //
-
-  public Estudiante(String nombreCompleto, String usuario, String contrasena, ArrayList<Carrera> carreras) {
-    this.nombreCompleto = nombreCompleto;
-    this.usuario = usuario;
-    this.contrasena = contrasena;
-    this.carreras = carreras;
-  }
-
-
-  public Estudiante() {
-  }
+    public Estudiante() {
+    }
 
 //
-  // Methods
-  //
+    // Methods
+    //
 
-  public ArrayList<ArrayList<Curso>> getSemestre() {
-    return semestre;
-  }
-
-
-  //
-  // Accessor methods
-  //
-
-  /**
-   * Set the value of nombreCompleto
-   *
-   * @param newVar the new value of nombreCompleto
-   */
-  public void setNombreCompleto(String newVar) {
-    nombreCompleto = newVar;
-  }
-
-  /**
-   * Get the value of nombreCompleto
-   *
-   * @return the value of nombreCompleto
-   */
-  public String getNombreCompleto() {
-    return nombreCompleto;
-  }
-
-  /**
-   * Set the value of usuario
-   *
-   * @param newVar the new value of usuario
-   */
-  public void setUsuario(String newVar) {
-    usuario = newVar;
-  }
-
-  /**
-   * Get the value of usuario
-   *
-   * @return the value of usuario
-   */
-  public String getUsuario() {
-    return usuario;
-  }
-
-  /**
-   * Set the value of contrasena
-   *
-   * @param newVar the new value of contrasena
-   */
-  public void setContrasena(String newVar) {
-    contrasena = newVar;
-  }
-
-  /**
-   * Get the value of contrasena
-   *
-   * @return the value of contrasena
-   */
-  public String getContrasena() {
-    return contrasena;
-  }
-
-  //
-  // Other methods
-  //
-
-  /**
-   * @param carrera
-   */
-  public void cambiarCarrera(Carrera carrera) {
-    Scanner sctemp = new Scanner(System.in);
-    int temp = 0;
-    for (int i = 0; i < this.carreras.size(); i++) {
-      System.out.println("i: " + i + " Nombre:" + this.carreras.get(i).getNombre());
+    public ArrayList<ArrayList<Curso>> getSemestre() {
+        return semestre;
     }
-    System.out.println("Digite la carrera que desea cambiar: ");
-    temp = sctemp.nextInt();
-    sctemp.nextLine();
-    this.carreras.set(temp, carrera);
-
-  }
 
 
-  /**
-   * @param curso
-   */
-  public void matricularCurso(Curso curso) {
-  }
+    //
+    // Accessor methods
+    //
 
+    /**
+     * Set the value of nombreCompleto
+     *
+     * @param newVar the new value of nombreCompleto
+     */
+    public void setNombreCompleto(String newVar) {
+        nombreCompleto = newVar;
+    }
 
-  /**
-   * @param actividad
-   */
-  public void agregarActividad(Actividad actividad) {
-  }
+    /**
+     * Get the value of nombreCompleto
+     *
+     * @return the value of nombreCompleto
+     */
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
 
+    /**
+     * Set the value of usuario
+     *
+     * @param newVar the new value of usuario
+     */
+    public void setUsuario(String newVar) {
+        usuario = newVar;
+    }
 
-  /**
-   * @param semestre
-   * @param anio
-   */
-  public void mostrarCursos(Byte semestre, Short anio) {
-  }
+    /**
+     * Get the value of usuario
+     *
+     * @return the value of usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
 
+    /**
+     * Set the value of contrasena
+     *
+     * @param newVar the new value of contrasena
+     */
+    public void setContrasena(String newVar) {
+        contrasena = newVar;
+    }
 
-  /**
-   * @param curso
-   * @param estado
-   */
-  public void asignarEstado(Curso curso, boolean estado) {
-  }
+    /**
+     * Get the value of contrasena
+     *
+     * @return the value of contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
+    }
 
+    //
+    // Other methods
+    //
 
-  /**
-   *
-   */
-  public void mostrarSemestreActual() {
-  }
-
-
-  /**
-   * @param curso
-   * @return Boolean
-   */
-  public Boolean validarCursoCarrera(Curso curso) {
-    boolean flag = false;
-    ArrayList<Carrera> carrerasCurso = curso.getCarrerasList();
-
-    for (int i = 0; i < carrerasCurso.size(); i++) {
-      for (int j = 0; j < this.carreras.size(); j++) {
-        if (carrerasCurso.get(i).getNombre().toLowerCase().equals(this.carreras.get(j).getNombre().toLowerCase())) {
-          System.out.println("Si pertenece");
-          flag = true;
+    /**
+     * @param carrera
+     */
+    public void cambiarCarrera(Carrera carrera) {
+        Scanner sctemp = new Scanner(System.in);
+        int temp = 0;
+        for (int i = 0; i < this.carreras.size(); i++) {
+            System.out.println("i: " + i + " Nombre:" + this.carreras.get(i).getNombre());
         }
-      }
-    }
-    return flag;
-  }
+        System.out.println("Digite la carrera que desea cambiar: ");
+        temp = sctemp.nextInt();
+        sctemp.nextLine();
+        this.carreras.set(temp, carrera);
 
-  public Boolean validarCursoActivo(Curso curso) {
-    boolean flag = false;
-    if (curso.getEstado().toLowerCase() == "encurso") {
-      flag = true;
     }
 
-    return flag;
-  }
 
-
-  /**
-   * @param curso
-   */
-  public void registrarHorarioCurso(Curso curso) {
-  }
-
-
-  /**
-   *
-   */
-  public void calcularDedicacionSemanal() {
-  }
-
-
-  /**
-   * @param fecha
-   */
-  public void reporteDiario(String fecha) {
-  }
-
-
-  /**
-   * @param fecha
-   */
-  public void reporteSemanal(String fecha) {
-  }
-
-
-  /**
-   * @param fecha
-   */
-  public void porcentajeEjecutadoSemanal(String fecha) {
-  }
-
-
-  /**
-   * @param fecha
-   */
-  public void reporteTiempoDisponible(String fecha) {
-  }
-
-
-  /**
-   * @param curso
-   * @return String
-   */
-  public String EstadoCurso(Curso curso) {
-    return "";
-  }
-
-
-  public void addCursoSemestre(ArrayList<Curso> curso) {
-    this.semestre.add(curso);
-  }
-
-  public void getCursosSemestre(int semestre) {
-
-    for (int i = 0; i < this.semestre.get(semestre).size(); i++) {
-      System.out.println(this.semestre.get(semestre).get(i).getNombre());
+    /**
+     * @param curso
+     */
+    public void matricularCurso(Curso curso) {
     }
 
-  }
 
-  public ArrayList<Actividad> getActividades() {
-    return actividades;
-  }
-
-  public void addActividades(Actividad actividad) {
-    this.actividades.add(actividad);
-  }
+    /**
+     * @param actividad
+     */
+    public void agregarActividad(Actividad actividad) {
+    }
 
 
-  public void setCursosSemestreActual() {
-
-    int actual = this.getSemestre().size() - 1;
-
-    this.cursosActuales = getSemestre().get(actual);
-
-  }
-
-  public void crearHorario() {
-    setCursosSemestreActual();
+    /**
+     * @param semestre
+     * @param anio
+     */
+    public void mostrarCursos(Byte semestre, Short anio) {
+    }
 
 
-    //Bucle para llenar la matriz con los cursos
-    for (int i = 0; i < this.cursosActuales.size(); i++) {
-      Curso temp = this.cursosActuales.get(i);
-      byte posActual = temp.getHoraInicio();
-      byte posFinal = temp.getHoraFinal();
-      byte dia = temp.getDia();
-      for (byte j = posActual; j < posFinal; j++) {
-        if (this.semana[j][dia] == null) {
-          this.semana[j][dia] = "Clases " + temp.getNombre();
+    /**
+     * @param curso
+     * @param estado
+     */
+    public void asignarEstado(Curso curso, boolean estado) {
+    }
+
+
+    /**
+     *
+     */
+    public void mostrarSemestreActual() {
+    }
+
+
+    /**
+     * @param curso
+     * @return Boolean
+     */
+    public Boolean validarCursoCarrera(Curso curso) {
+        boolean flag = false;
+        ArrayList<Carrera> carrerasCurso = curso.getCarrerasList();
+
+        for (int i = 0; i < carrerasCurso.size(); i++) {
+            for (int j = 0; j < this.carreras.size(); j++) {
+                if (carrerasCurso.get(i).getNombre().toLowerCase().equals(this.carreras.get(j).getNombre().toLowerCase())) {
+                    System.out.println("Si pertenece");
+                    flag = true;
+                }
+            }
+        }
+        return flag;
+    }
+
+    public Boolean validarCursoActivo(Curso curso) {
+        boolean flag = false;
+        if (curso.getEstado().toLowerCase() == "encurso") {
+            flag = true;
+        }
+
+        return flag;
+    }
+
+
+    /**
+     * @param curso
+     */
+    public void registrarHorarioCurso(Curso curso) {
+    }
+
+
+    /**
+     *
+     */
+    public void calcularDedicacionSemanal() {
+    }
+
+
+    /**
+     * @param fecha
+     */
+    public void reporteDiario(String fecha) {
+    }
+
+
+    /**
+     * @param fecha
+     */
+    public void reporteSemanal(String fecha) {
+    }
+
+
+    /**
+     * @param fecha
+     */
+    public void porcentajeEjecutadoSemanal(String fecha) {
+    }
+
+
+    /**
+     * @param fecha
+     */
+    public void reporteTiempoDisponible(String fecha) {
+    }
+
+
+    /**
+     * @param curso
+     * @return String
+     */
+    public String EstadoCurso(Curso curso) {
+        return "";
+    }
+
+
+    public void addCursoSemestre(ArrayList<Curso> curso) {
+        this.semestre.add(curso);
+    }
+
+    public void getCursosSemestre(int semestre) {
+
+        for (int i = 0; i < this.semestre.get(semestre).size(); i++) {
+            System.out.println(this.semestre.get(semestre).get(i).getNombre());
+        }
+
+    }
+
+    public ArrayList<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void addActividades(Actividad actividad) {
+        this.actividades.add(actividad);
+    }
+
+
+    public void setCursosSemestreActual() {
+
+        int actual = this.getSemestre().size() - 1;
+
+        this.cursosActuales = getSemestre().get(actual);
+
+    }
+
+    public void crearHorario() {
+
+
+        setCursosSemestreActual();
+
+
+        //Bucle para llenar la matriz con los cursos
+        for (int i = 0; i < this.cursosActuales.size(); i++) {
+            Curso temp = this.cursosActuales.get(i);
+            byte posActual = temp.getHoraInicio();
+            byte posFinal = temp.getHoraFinal();
+            byte dia = temp.getDia();
+            for (byte j = posActual; j < posFinal; j++) {
+                if (this.semana[j][dia] == null) {
+                    this.clases++;
+                    this.semana[j][dia] = "Clases " + temp.getNombre();
+                } else {
+                    System.out.println("Se presenta un choque de horario");
+                }
+            }
+
+
+        }
+
+        //Bucle para llenar la matriz con actividades.
+        for (int i = 0; i < this.actividades.size(); i++) {
+            Actividad tempAct = this.actividades.get(i);
+            byte posActual = tempAct.getHoraInicio();
+            byte posFinal = tempAct.getHoraFinal();
+            byte dia = tempAct.getDia();
+            for (byte j = posActual; j < posFinal; j++) {
+                if (this.semana[j][dia] == null) {
+                    if (tempAct.getClass().getName() == "ActividadCurso") {
+                        this.actCurso++;
+                    }
+                    if (tempAct.getClass().getName() == "ActividadRecreativa") {
+                        this.recreativa++;
+                    }
+                    if (tempAct.getClass().getName() == "Evaluaciones") {
+                        this.evaluaciones++;
+                    }
+                    this.semana[j][dia] = "Actividad " + tempAct.getNombre();
+
+                } else {
+                    System.out.println("Se presenta un choque de horario");
+                }
+            }
+        }
+
+
+    }
+
+
+    public void reporteSemanal() {
+        crearHorario();
+        int cont = 0;
+        for (int i = 0; i < 7; i++) {
+            System.out.println("Dia numero: " + (i + 1));
+            for (int j = 0; j < 12; j++) {
+                if (semana[j][i] != null) {
+                    cont++;
+                    System.out.print(ANSI_GREEN + "Hora: " + (j + 1) + " " + semana[j][i] + "  " + ANSI_RESET);
+                } else {
+                    System.out.print("Hora: " + (j + 1) + " Vacio  ");
+                }
+            }
+            System.out.println("");
+            System.out.println("");
+        }
+        System.out.println("Porcentaje semanal: " + (((cont * 100)) / 84) + "%");
+        System.out.println("Horas Ocupadas: " + cont);
+    }
+
+    public void reporteDia() {
+        Scanner sctemp = new Scanner(System.in);
+        int diaReporte = 0;
+        System.out.println("Digite el dia que desea generar el reporte: ");
+        if (diaReporte > 0 && diaReporte < 7) {
+            diaReporte = sctemp.nextInt();
         } else {
-          System.out.println("Se presenta un choque de horario");
+            System.out.println("Ha digitado un dia incorrecto");
         }
-      }
 
+        sctemp.nextLine();
+        crearHorario();
+        int cont = 0;
+        System.out.println("Dia numero: " + (diaReporte + 1));
 
-    }
-
-    //Bucle para llenar la matriz con actividades.
-    for (int i = 0; i < this.actividades.size(); i++) {
-      Actividad tempAct = this.actividades.get(i);
-      byte posActual = tempAct.getHoraInicio();
-      byte posFinal = tempAct.getHoraFinal();
-      byte dia = tempAct.getDia();
-      for (byte j = posActual; j < posFinal; j++) {
-        if (this.semana[j][dia] == null) {
-          this.semana[j][dia] = "Actividad " + tempAct.getNombre();
-
-        } else {
-          System.out.println("Se presenta un choque de horario");
-        }
-      }
-    }
-
-  }
-
-
-  public void reporteSemanal() {
-    crearHorario();
-    int cont = 0;
-    for (int i = 0; i < 7; i++) {
-      System.out.println("Dia numero: " + (i + 1));
-      for (int j = 0; j < 12; j++) {
-        if (semana[j][i] != null) {
-          cont++;
-          System.out.print(ANSI_GREEN + "Hora: " + (j + 1) + " " + semana[j][i] + "  " + ANSI_RESET);
-        } else {
-          System.out.print("Hora: " + (j + 1) + " Vacio  ");
-        }
-      }
-      System.out.println("");
-      System.out.println("");
-    }
-    System.out.println("Porcentaje semanal: " + (((cont * 100)) / 84) + "%");
-    System.out.println("Horas Ocupadas: " + cont );
-  }
-
-  public void reporteDia() {
-    Scanner sctemp = new Scanner(System.in);
-    int diaReporte = 0;
-    System.out.println("Digite el dia que desea generar el reporte: ");
-    if (diaReporte > 0 && diaReporte < 7) {
-      diaReporte = sctemp.nextInt();
-    } else {
-      System.out.println("Ha digitado un dia incorrecto");
-    }
-
-    sctemp.nextLine();
-
-    crearHorario();
-    int cont = 0;
-    System.out.println("Dia numero: " + (diaReporte + 1));
-
-    for (int j = 0; j < 12; j++) {
-      if (semana[j][diaReporte] != null) {
-        cont++;
-        System.out.print(ANSI_GREEN + "Hora: " + (j + 1) + " " + semana[j][diaReporte] + "  " + ANSI_RESET);
-      } else {
-        System.out.print("Hora: " + (j + 1) + " Vacio  ");
-      }
-    }
-
-
-    System.out.println("Porcentaje dia: " + (((cont * 100)) / 12) + "%");
-  }
-
-
-  public void reporteTiempoDisponibleSemana() {
-    if(this.semana.length==0){
-      crearHorario();
-    }else{
-      int cont = 0;
-      for (int i = 0; i < 7; i++) {
         for (int j = 0; j < 12; j++) {
-          if (semana[j][i] != null) {
-            cont++;
-          }
+            if (semana[j][diaReporte] != null) {
+                cont++;
+                System.out.print(ANSI_GREEN + "Hora: " + (j + 1) + " " + semana[j][diaReporte] + "  " + ANSI_RESET);
+            } else {
+                System.out.print("Hora: " + (j + 1) + " Vacio  ");
+            }
         }
-      }
-      System.out.println("Tiempo disponible "+ (84 -cont)+" horas");
+
+
+        System.out.println("Porcentaje dia: " + (((cont * 100)) / 12) + "%");
     }
 
 
-  }
+    public void reporteTiempoDisponibleSemana() {
+        boolean flag = false;
+
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (semana[j][i] != null) {
+                    flag = true;
+                }
+            }
+        }
+        if (flag == false) {
+            crearHorario();
+        }
+        int cont = 0;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (semana[j][i] != null) {
+                    cont++;
+                }
+            }
+        }
+        System.out.println("Tiempo disponible " + (84 - cont) + " horas");
+        
+
+    }
+
+
+    public void reportePorcentajePorTipoActividad() {
+        boolean flag = false;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 12; j++) {
+                if (semana[j][i] != null) {
+                    flag = true;
+                }
+            }
+        }
+        if (flag == false) {
+            crearHorario();
+        }
+        System.out.println("Porcentaje por Asistencia a Clases: " + ((this.clases * 100)) / 84 + "%");
+        System.out.println("Porcentaje por Actividades Curso: " + ((this.actCurso * 100)) / 84 + "%");
+        System.out.println("Porcentaje por Actividades Recreativa: " + ((this.recreativa * 100)) / 84 + "%");
+        System.out.println("Porcentaje por Actividades Evaluaciones: " + ((this.evaluaciones * 100)) / 84 + "%");
+
+
+    }
+
+
 }

@@ -126,12 +126,12 @@ public class Main {
                 case 7:
                     Estudiante e2 = seleccionarEstudiantes(estudiantes);
                     seleccionarCursosSemestre(e2);
+                    break;
 
                 case 8:
                     Estudiante e3 = seleccionarEstudiantes(estudiantes);
                     ArrayList<Curso> s1 = seleccionarCursosSemestre(e3);
                     manipularEstadoCursosSemestre(s1);
-
                     break;
 
                 case 0:
@@ -271,11 +271,11 @@ public class Main {
         for (int i = 0; i < cursosAgregar.size(); i++) {
             if (estudiante.validarCursoCarrera(cursosAgregar.get(i))==false) {
                 cursosAgregar.remove(cursosAgregar.get(i));
-            }else{
-                System.out.println("No pertenece el curso a este plan de estudios.");
             }
         }
-        estudiante.addCursoSemestre(cursosAgregar);
+        if(cursosAgregar.size()>0){
+            estudiante.addCursoSemestre(cursosAgregar);
+        }
 
 
     }
@@ -312,7 +312,26 @@ public class Main {
         n = sctemp.nextInt();
         sctemp.nextLine();
         tempEstudiante = estudiantes.get(n);
-        return tempEstudiante;
+
+
+        boolean flag =false;
+
+        do {
+            String contra="";
+            String usuario="";
+            System.out.println("Digite el usuario:");
+            usuario = sctemp.nextLine();
+            sctemp.nextLine();
+            System.out.println("Digite la contrasena:");
+            contra = sctemp.nextLine();
+            sctemp.nextLine();
+            flag =checkLogin(usuario,contra,tempEstudiante);
+        }
+        while (flag != true);
+
+        Estudiante estudiante2 = estudiantes.get(n);
+
+        return estudiante2;
 
     }
 
@@ -354,7 +373,7 @@ public class Main {
         String estado = "";
         System.out.println("-------------Cursos Disponibles-----------------");
         for (int i = 0; i < cursos.size(); i++) {
-            System.out.println("i :" + i + "Nombre: " + cursos.get(i).getNombre());
+            System.out.println("i : " + i + " Nombre: " + cursos.get(i).getNombre()+ " Estado: "+ cursos.get(i).getEstado());
         }
         System.out.println("");
         System.out.println("Digite el curso que desea cambiar de estado: ");
@@ -367,7 +386,20 @@ public class Main {
         Curso c1 = cursos.get(n);
         c1.setEstado(estado);
 
+        System.out.println(" Nombre: " + cursos.get(n).getNombre()+ " Estado: "+ cursos.get(n).getEstado());
 
+
+    }
+
+    public static Boolean checkLogin(String usuario,String contrasena,Estudiante est){
+        boolean flag = false;
+        Estudiante temp = est;
+        if(usuario.equals(temp.getUsuario()) && contrasena.equals(temp.getContrasena())){
+            flag =true;
+        }else{
+            System.out.println("No coinciden los credenciales");
+        }
+        return flag;
     }
 
 

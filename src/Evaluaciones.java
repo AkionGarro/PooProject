@@ -10,13 +10,19 @@ public class Evaluaciones extends Actividad {
   //
 
   private String tipo;
-  private Integer tiempo;
+  private int tiempo;
+  private Curso cursoAsociado;
   
   //
   // Constructors
   //
-  public Evaluaciones () { };
-  
+
+  public Evaluaciones(String nombre, String tipo, int tiempo, Curso cursoAsociado) {
+    super(nombre);
+    this.tipo = tipo;
+    this.tiempo = tiempo;
+    this.cursoAsociado = cursoAsociado;
+  }
   //
   // Methods
   //
@@ -62,4 +68,12 @@ public class Evaluaciones extends Actividad {
   // Other methods
   //
 
+
+  public Curso getCursoAsociado() {
+    return cursoAsociado;
+  }
+
+  public void setCursoAsociado(Curso cursoAsociado) {
+    this.cursoAsociado = cursoAsociado;
+  }
 }

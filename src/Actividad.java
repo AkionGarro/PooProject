@@ -15,8 +15,11 @@ abstract public class Actividad {
   // Constructors
   //
   public Actividad () { };
-  
-  //
+
+  public Actividad(String nombre) {
+    this.nombre = nombre;
+  }
+//
   // Methods
   //
 

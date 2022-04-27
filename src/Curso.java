@@ -19,6 +19,7 @@ public class Curso {
     private String estado;
     public ArrayList<Carrera> carrerasLista = new ArrayList<Carrera>();
     private int numeroGrupo;
+    private byte tiempoDedicacion;
 
 
     //
@@ -202,4 +203,8 @@ public class Curso {
 
     }
 
+    public void setTiempoDedicacion(byte creditos,byte horas) {
+        byte temp = (byte) (creditos * 3);
+        this.tiempoDedicacion = (byte)(temp - horas);
+    }
 }

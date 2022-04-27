@@ -13,7 +13,16 @@ public class ActividadCurso extends Actividad{
   private Curso cursoAsociado;
   private String fechaInicio;
   private String fechaFinal;
-  
+
+
+  public ActividadCurso(String nombre, String descripcion, Curso cursoAsociado, String fechaInicio, String fechaFinal) {
+    super(nombre);
+    this.descripcion = descripcion;
+    this.cursoAsociado = cursoAsociado;
+    this.fechaInicio = fechaInicio;
+    this.fechaFinal = fechaFinal;
+  }
+
   //
   // Constructors
   //

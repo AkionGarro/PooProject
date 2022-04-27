@@ -178,6 +178,16 @@ public class Estudiante {
     return flag;
   }
 
+  public Boolean validarCursoActivo(Curso curso)
+  {
+    boolean flag= false;
+    if(curso.getEstado().toLowerCase()=="encurso"){
+      flag=true;
+    }
+
+    return flag;
+  }
+
 
   /**
    * @param        curso
@@ -249,5 +259,11 @@ public class Estudiante {
 
   }
 
+  public ArrayList<Actividad> getActividades() {
+    return actividades;
+  }
 
+  public void addActividades(Actividad actividad){
+    this.actividades.add(actividad);
+  }
 }

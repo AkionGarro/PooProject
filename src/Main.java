@@ -90,11 +90,12 @@ public class Main {
             System.out.println("3.Mostrar Carreras Disponibles");
             System.out.println("4.Mostrar Cursos Disponibles");
             System.out.println("5.Ingresar Estudiantes");
-            System.out.println("6.Ingresar Cursos a un Semestre");    //--Esto debe de cambiarse a la clase
+            System.out.println("6.Matricular Cursos");    //--Esto debe de cambiarse a la clase
             System.out.println("7.Mostrar Cursos de un Semestre");      //--Esto debe de cambiarse a la clase
             System.out.println("8.Manipular estados de los Cursos de un Semestre"); //--Esto debe de cambiarse a la clase
             System.out.println("9.Cambiar carrera Estudiante");
             System.out.println("10.Obtener cursos del semestre actual");
+            System.out.println("11.Registrar actividades");
 
             System.out.println("Digite una opcion: ");
             option = sc2.nextInt();
@@ -136,9 +137,23 @@ public class Main {
                     break;
                 case 9:
                     Estudiante e4 = seleccionarEstudiantes(estudiantes);
-                    Carrera carreratemp = seleccionarCarrera(carreras,e4);
+                    Carrera carreratemp = seleccionarCarrera(carreras, e4);
                     e4.cambiarCarrera(carreratemp);
                     break;
+                case 10:
+                    Estudiante e5 = seleccionarEstudiantes(estudiantes);
+                    if (e5.getSemestre().size() > 0) {
+                        seleccionarCursosSemestreActual(e5);
+                    } else {
+                        System.out.println("No tiene cursos agregados al semestre");
+                    }
+
+                    break;
+                case 11:
+                    Estudiante estAc = seleccionarEstudiantes(estudiantes);
+                    agregarActividad(estAc, cursos);
+                    break;
+
 
                 case 0:
                     System.exit(0);
@@ -211,6 +226,7 @@ public class Main {
         System.out.println("Digite el numero de grupo del curso:");
         numeroGrupoCurso = sctemp.nextInt();
         Curso cr1 = new Curso(nombreCurso, creditosCurso, horasLectivasCurso, horaInicioCurso, horaFinalCurso, estadoCurso, carrerasCurso, numeroGrupoCurso);
+        cr1.setTiempoDedicacion(creditosCurso, horasLectivasCurso);
         return cr1;
 
     }
@@ -245,7 +261,7 @@ public class Main {
 
     }
 
-    public static Carrera seleccionarCarrera(ArrayList<Carrera> carrerasMain,Estudiante estudiante) {
+    public static Carrera seleccionarCarrera(ArrayList<Carrera> carrerasMain, Estudiante estudiante) {
 
         System.out.println("----------------Carreras disponibles para cambio----------");
         for (int i = 0; i < carrerasMain.size(); i++) {
@@ -258,7 +274,7 @@ public class Main {
         System.out.println("Digite la carrera a la que desea cambiar:");
         n = sctemp.nextInt();
         sctemp.nextLine();
-        tempCarreras =  carrerasMain.get(n);
+        tempCarreras = carrerasMain.get(n);
 
         return tempCarreras;
 
@@ -293,11 +309,11 @@ public class Main {
         ArrayList<Curso> cursosAgregar = new ArrayList<Curso>();
         cursosAgregar = seleccionarCursos(disponibles);
         for (int i = 0; i < cursosAgregar.size(); i++) {
-            if (estudiante.validarCursoCarrera(cursosAgregar.get(i))==false) {
+            if (estudiante.validarCursoCarrera(cursosAgregar.get(i)) == false) {
                 cursosAgregar.remove(cursosAgregar.get(i));
             }
         }
-        if(cursosAgregar.size()>0){
+        if (cursosAgregar.size() > 0) {
             estudiante.addCursoSemestre(cursosAgregar);
         }
 
@@ -325,6 +341,20 @@ public class Main {
 
     }
 
+    public static Curso seleccionarCurso(ArrayList<Curso> cursos) {
+        for (int i = 0; i < cursos.size(); i++) {
+            System.out.println("i: " + i + " Nombre:" + cursos.get(i).getNombre());
+        }
+        Scanner sctemp = new Scanner(System.in);
+        Curso tempCursos;
+        int n = 0;
+        System.out.println("Digite el curso que desea agregar:");
+        n = sctemp.nextInt();
+        sctemp.nextLine();
+        tempCursos = cursos.get(n);
+        return tempCursos;
+    }
+
     public static Estudiante seleccionarEstudiantes(ArrayList<Estudiante> estudiantes) {
         for (int i = 0; i < estudiantes.size(); i++) {
             System.out.println("i: " + i + " Nombre:" + estudiantes.get(i).getNombreCompleto());
@@ -338,18 +368,18 @@ public class Main {
         tempEstudiante = estudiantes.get(n);
 
 
-        boolean flag =false;
+        boolean flag = false;
 
         do {
-            String contra="";
-            String usuario="";
+            String contra = "";
+            String usuario = "";
             System.out.println("Digite el usuario:");
             usuario = sctemp.nextLine();
             sctemp.nextLine();
             System.out.println("Digite la contrasena:");
             contra = sctemp.nextLine();
             sctemp.nextLine();
-            flag =checkLogin(usuario,contra,tempEstudiante);
+            flag = checkLogin(usuario, contra, tempEstudiante);
         }
         while (flag != true);
 
@@ -381,12 +411,12 @@ public class Main {
     public static ArrayList<Curso> seleccionarCursosSemestreActual(Estudiante estudiante) {
 
         System.out.println("-------------Cursos semestre actual-----------------");
-        int size = estudiante.getSemestre().size() - 1;
-        for (int i = 0; i < estudiante.getSemestre().get(size).size(); i++) {
-            System.out.println("Curso : " + estudiante.getSemestre().get(size).get(i).getNombre());
+        int actual = estudiante.getSemestre().size() - 1;
+        for (int i = 0; i < estudiante.getSemestre().get(actual).size(); i++) {
+            System.out.println("Curso : " + estudiante.getSemestre().get(actual).get(i).getNombre());
         }
 
-        return estudiante.getSemestre().get(size);
+        return estudiante.getSemestre().get(actual);
 
     }
 
@@ -397,7 +427,7 @@ public class Main {
         String estado = "";
         System.out.println("-------------Cursos Disponibles-----------------");
         for (int i = 0; i < cursos.size(); i++) {
-            System.out.println("i : " + i + " Nombre: " + cursos.get(i).getNombre()+ " Estado: "+ cursos.get(i).getEstado());
+            System.out.println("i : " + i + " Nombre: " + cursos.get(i).getNombre() + " Estado: " + cursos.get(i).getEstado());
         }
         System.out.println("");
         System.out.println("Digite el curso que desea cambiar de estado: ");
@@ -410,20 +440,108 @@ public class Main {
         Curso c1 = cursos.get(n);
         c1.setEstado(estado);
 
-        System.out.println(" Nombre: " + cursos.get(n).getNombre()+ " Estado: "+ cursos.get(n).getEstado());
+        System.out.println(" Nombre: " + cursos.get(n).getNombre() + " Estado: " + cursos.get(n).getEstado());
 
 
     }
 
-    public static Boolean checkLogin(String usuario,String contrasena,Estudiante est){
+    public static Boolean checkLogin(String usuario, String contrasena, Estudiante est) {
         boolean flag = false;
         Estudiante temp = est;
-        if(usuario.equals(temp.getUsuario()) && contrasena.equals(temp.getContrasena())){
-            flag =true;
-        }else{
+        if (usuario.equals(temp.getUsuario()) && contrasena.equals(temp.getContrasena())) {
+            flag = true;
+        } else {
             System.out.println("No coinciden los credenciales");
         }
         return flag;
+    }
+
+
+
+    public static void agregarActividad(Estudiante estudiante, ArrayList<Curso> cursos) {
+        Scanner sctemp = new Scanner(System.in);
+        int n = 0;
+        System.out.println("Tipos de actividades disponibles ");
+        System.out.println("1. Actividad Recreativa");
+        System.out.println("2. Actividad Curso");
+        System.out.println("3. Evaluaciones");
+        n = sctemp.nextInt();
+
+        switch (n) {
+            case 1:
+                String nombre = "";
+                String tiempoEjecucion = "";
+                Byte horas = 0;
+                System.out.println("Digite el nombre de la actividad:");
+                nombre = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite el tiempo ejecucion:");
+                tiempoEjecucion = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite las horas:");
+                horas = sctemp.nextByte();
+                sctemp.nextLine();
+                ActividadRecreativa ar = new ActividadRecreativa(nombre, tiempoEjecucion, horas);
+                estudiante.addActividades(ar);
+                break;
+            case 2:
+
+                String nombreActividad = "";
+                String descripcionCurso = "";
+                String fechaInicio = "";
+                String fechaFinal = "";
+                System.out.println("Digite el nombre de la actividad:");
+                nombreActividad = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite la descripcion del curso:");
+                descripcionCurso = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite la fecha de inicio:");
+                fechaInicio = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite al fecha final:");
+                fechaFinal = sctemp.nextLine();
+                sctemp.nextLine();
+                Curso crs1 = seleccionarCurso(cursos);
+                if (estudiante.validarCursoCarrera(crs1) == true && estudiante.validarCursoActivo(crs1)) {
+
+                    ActividadCurso ar2 = new ActividadCurso(nombreActividad, descripcionCurso, crs1, fechaInicio, fechaFinal);
+                    estudiante.addActividades(ar2);
+                }else{
+                    System.out.println("Curso no está activo ");
+                }
+
+
+                break;
+            case 3:
+                String nombreEvaluacion = "";
+                String tipo = "";
+                int tiempo = 0;
+                System.out.println("Digite el nombre de la evalacion:");
+                nombreEvaluacion = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite el tipo de la evaluacion:");
+                tipo = sctemp.nextLine();
+                sctemp.nextLine();
+                System.out.println("Digite el tiempo de la evaluacion:");
+                tiempo = sctemp.nextInt();
+                sctemp.nextLine();
+                Curso cursoAsociado = seleccionarCurso(cursos);
+                if (estudiante.validarCursoCarrera(cursoAsociado) == true && estudiante.validarCursoActivo(cursoAsociado)) {
+                    Evaluaciones e1 = new Evaluaciones(nombreEvaluacion, tipo, tiempo, cursoAsociado);
+                    estudiante.addActividades(e1);
+                }else{
+                    System.out.println("Curso no está activo ");
+                }
+
+                break;
+            default:
+                System.out.println("Digite una opcion correcta");
+                break;
+
+        }
+
+
     }
 
 

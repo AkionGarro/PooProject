@@ -15,8 +15,14 @@ public class ActividadRecreativa extends Actividad{
   //
   // Constructors
   //
-  public ActividadRecreativa () { };
-  
+
+  public ActividadRecreativa(String nombre, String tiempoEjecucion, Byte horas) {
+    super(nombre);
+    this.tiempoEjecucion = tiempoEjecucion;
+    this.horas = horas;
+  }
+
+
   //
   // Methods
   //

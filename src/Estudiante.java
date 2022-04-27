@@ -160,9 +160,8 @@ public class Estudiante {
     for(int i=0;i<carrerasCurso.size();i++){
       for(int j=0;j<this.carreras.size();j++){
         if(carrerasCurso.get(i).getNombre().toLowerCase().equals(this.carreras.get(j).getNombre().toLowerCase())){
+          System.out.println("Si pertenece");
           flag=true;
-        }else{
-          flag=false;
         }
       }
     }

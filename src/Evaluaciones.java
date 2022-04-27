@@ -10,19 +10,25 @@ public class Evaluaciones extends Actividad {
   //
 
   private String tipo;
-  private int tiempo;
+  private byte horaInicio;
+  private byte horaFinal;
+  private int dia;
   private Curso cursoAsociado;
   
   //
   // Constructors
   //
 
-  public Evaluaciones(String nombre, String tipo, int tiempo, Curso cursoAsociado) {
+  public Evaluaciones(String nombre, String tipo, byte horaInicio, byte horaFinal, int dia, Curso cursoAsociado) {
     super(nombre);
     this.tipo = tipo;
-    this.tiempo = tiempo;
+    this.horaInicio = horaInicio;
+    this.horaFinal = horaFinal;
+    this.dia = dia;
     this.cursoAsociado = cursoAsociado;
   }
+
+
   //
   // Methods
   //
@@ -48,21 +54,7 @@ public class Evaluaciones extends Actividad {
     return tipo;
   }
 
-  /**
-   * Set the value of tiempo
-   * @param newVar the new value of tiempo
-   */
-  public void setTiempo (Integer newVar) {
-    tiempo = newVar;
-  }
 
-  /**
-   * Get the value of tiempo
-   * @return the value of tiempo
-   */
-  public Integer getTiempo () {
-    return tiempo;
-  }
 
   //
   // Other methods
@@ -75,5 +67,29 @@ public class Evaluaciones extends Actividad {
 
   public void setCursoAsociado(Curso cursoAsociado) {
     this.cursoAsociado = cursoAsociado;
+  }
+
+  public byte getHoraInicio() {
+    return horaInicio;
+  }
+
+  public void setHoraInicio(byte horaInicio) {
+    this.horaInicio = horaInicio;
+  }
+
+  public byte getHoraFinal() {
+    return horaFinal;
+  }
+
+  public void setHoraFinal(byte horaFinal) {
+    this.horaFinal = horaFinal;
+  }
+
+  public int getDia() {
+    return dia;
+  }
+
+  public void setDia(int dia) {
+    this.dia = dia;
   }
 }

@@ -10,7 +10,9 @@ abstract public class Actividad {
   //
 
   private String nombre;
-  
+  private byte horaInicio;
+  private byte horaFinal;
+  private byte dia;
   //
   // Constructors
   //
@@ -19,7 +21,14 @@ abstract public class Actividad {
   public Actividad(String nombre) {
     this.nombre = nombre;
   }
-//
+
+  public Actividad(String nombre, byte horaInicio, byte horaFinal, byte dia) {
+    this.nombre = nombre;
+    this.horaInicio = horaInicio;
+    this.horaFinal = horaFinal;
+    this.dia = dia;
+  }
+  //
   // Methods
   //
 
@@ -75,5 +84,27 @@ abstract public class Actividad {
   {
   }
 
+  public byte getHoraInicio() {
+    return horaInicio;
+  }
 
+  public void setHoraInicio(byte horaInicio) {
+    this.horaInicio = horaInicio;
+  }
+
+  public byte getHoraFinal() {
+    return horaFinal;
+  }
+
+  public void setHoraFinal(byte horaFinal) {
+    this.horaFinal = horaFinal;
+  }
+
+  public byte getDia() {
+    return dia;
+  }
+
+  public void setDia(byte dia) {
+    this.dia = dia;
+  }
 }

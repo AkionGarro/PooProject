@@ -26,28 +26,29 @@ public class Test {
         carreras.add(pc4);
         carreras.add(pc5);
 
+
         //Registro de cursos
 
         ArrayList<Carrera> carrerasCC = new ArrayList<Carrera>();
         carrerasCC.add(carreras.get(0));
         carrerasCC.add(carreras.get(1));
-        Curso pcs1 = new Curso("CC",(byte) 4,(byte) 4,(byte) 8 , (byte) 12,"Aprobado",carrerasCC,01);
+        Curso pcs1 = new Curso("CC", (byte) 4, (byte) 4, (byte) 0, (byte) 3,(byte) 1, "encurso", carrerasCC, 01);
 
         ArrayList<Carrera> carrerasCA = new ArrayList<Carrera>();
         carrerasCA.add(carreras.get(1));
         carrerasCA.add(carreras.get(2));
-        Curso pcs2 = new Curso("CA",(byte) 4,(byte) 4,(byte) 8 , (byte) 12,"Aprobado",carrerasCA,02);
+        Curso pcs2 = new Curso("CA", (byte) 4, (byte) 4, (byte) 2, (byte) 5, (byte) 2,"encurso", carrerasCA, 02);
 
         ArrayList<Carrera> carrerasCompi = new ArrayList<Carrera>();
         carrerasCompi.add(carreras.get(2));
         carrerasCompi.add(carreras.get(3));
-        Curso pcs3 = new Curso("Compiladores",(byte) 4,(byte) 4,(byte) 8 , (byte) 12,"Aprobado",carrerasCompi,03);
+        Curso pcs3 = new Curso("Compiladores", (byte) 2, (byte) 2, (byte) 0, (byte) 1,(byte) 3 ,"encurso", carrerasCompi, 03);
 
 
         ArrayList<Carrera> carrerasPOO = new ArrayList<Carrera>();
         carrerasPOO.add(carreras.get(3));
         carrerasPOO.add(carreras.get(4));
-        Curso pcs4 = new Curso("POO",(byte) 4,(byte) 4,(byte) 8 , (byte) 12,"Aprobado",carrerasPOO,04);
+        Curso pcs4 = new Curso("POO", (byte) 4, (byte) 4, (byte) 4, (byte) 7, (byte) 4, "encurso", carrerasPOO, 04);
 
         cursos.add(pcs1);
         cursos.add(pcs2);

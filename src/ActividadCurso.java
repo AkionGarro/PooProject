@@ -11,16 +11,19 @@ public class ActividadCurso extends Actividad{
 
   private String descripcion;
   private Curso cursoAsociado;
-  private String fechaInicio;
-  private String fechaFinal;
+  private byte horaInicio;
+  private byte horaFinal;
+  private byte dia;
 
 
-  public ActividadCurso(String nombre, String descripcion, Curso cursoAsociado, String fechaInicio, String fechaFinal) {
+
+  public ActividadCurso(String nombre, String descripcion, Curso cursoAsociado, byte fechaInicio, byte fechaFinal,byte dia) {
     super(nombre);
     this.descripcion = descripcion;
     this.cursoAsociado = cursoAsociado;
-    this.fechaInicio = fechaInicio;
-    this.fechaFinal = fechaFinal;
+    this.horaInicio = fechaInicio;
+    this.horaFinal = fechaFinal;
+    this.dia = dia;
   }
 
   //
@@ -69,37 +72,32 @@ public class ActividadCurso extends Actividad{
     return cursoAsociado;
   }
 
-  /**
-   * Set the value of fechaInicio
-   * @param newVar the new value of fechaInicio
-   */
-  public void setFechaInicio (String newVar) {
-    fechaInicio = newVar;
+  public byte getHoraInicio() {
+    return horaInicio;
   }
 
-  /**
-   * Get the value of fechaInicio
-   * @return the value of fechaInicio
-   */
-  public String getFechaInicio () {
-    return fechaInicio;
+  public void setHoraInicio(byte horaInicio) {
+    this.horaInicio = horaInicio;
   }
 
-  /**
-   * Set the value of fechaFinal
-   * @param newVar the new value of fechaFinal
-   */
-  public void setFechaFinal (String newVar) {
-    fechaFinal = newVar;
+  public byte getHoraFinal() {
+    return horaFinal;
   }
 
-  /**
-   * Get the value of fechaFinal
-   * @return the value of fechaFinal
-   */
-  public String getFechaFinal () {
-    return fechaFinal;
+  public void setHoraFinal(byte horaFinal) {
+    this.horaFinal = horaFinal;
   }
+
+  public byte getDia() {
+    return dia;
+  }
+
+  public void setDia(byte dia) {
+    this.dia = dia;
+  }
+
+
+
 
   //
   // Other methods

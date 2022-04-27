@@ -16,9 +16,10 @@ public class Estudiante {
   private String contrasena;
 
   private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
-  //private ArrayList<Curso> cursosActuales = new ArrayList<Curso>();
+  private ArrayList<Curso> cursosActuales = new ArrayList<Curso>();
   private ArrayList<Actividad> actividades = new ArrayList<Actividad>();
   private ArrayList< ArrayList<Curso>> semestre = new ArrayList<ArrayList<Curso>>();
+  private String [][] semana = new String [12][7];
   //
   // Constructors
   //
@@ -266,4 +267,82 @@ public class Estudiante {
   public void addActividades(Actividad actividad){
     this.actividades.add(actividad);
   }
+
+
+  public  void setCursosSemestreActual() {
+
+    int actual = this.getSemestre().size() - 1;
+
+    this.cursosActuales = getSemestre().get(actual);
+
+  }
+
+  public void agendaSemanal(){
+    setCursosSemestreActual();
+    int cont=0;
+
+    //Bucle para llenar la matriz con los cursos
+    for(int i=0;i<this.cursosActuales.size();i++){
+      Curso temp = this.cursosActuales.get(i);
+      byte posActual=temp.getHoraInicio();
+      byte posFinal = temp.getHoraFinal();
+      byte dia =temp.getDia();
+      for(byte j=posActual;j<posFinal;j++){
+        if(this.semana[j][dia]==null){
+          this.semana[j][dia] = "Clases "+temp.getNombre();
+          cont++;
+        }else{
+          System.out.println("Se presenta un choque de horario");
+        }
+      }
+
+      //Bucle para llenar la matriz con actividades.
+
+
+      for(byte j=posActual;j<posFinal;j++){
+        if(this.semana[j][dia]==null){
+          this.semana[j][dia] = "Clases "+temp.getNombre();
+          cont++;
+        }else{
+          System.out.println("Se presenta un choque de horario");
+        }
+      }
+    }
+
+
+    for(int i=0;i<this.actividades.size();i++){
+      Actividad tempAct = this.actividades.get(i);
+      byte posActual=tempAct.getHoraInicio();
+      byte posFinal = tempAct.getHoraFinal();
+      byte dia =tempAct.getDia();
+      for(byte j=posActual;j<posFinal;j++){
+        if(this.semana[j][dia]==null){
+          this.semana[j][dia] = "Actividad "+tempAct.getNombre();
+          cont++;
+        }else{
+          System.out.println("Se presenta un choque de horario");
+        }
+      }
+
+    for(int i=0;i<7;i++){
+      System.out.println("Dia numero: "+(i+1));
+      for(int j=0;j<12;j++){
+
+        if(semana[j][i]!=null){
+          System.out.print("Hora: "+(j+1) +" "+ semana[j][i]+"  ");
+        }else{
+          System.out.print("Hora: "+(j+1) + " Vacio  ");
+        }
+      }
+      System.out.println("");
+      System.out.println("");
+    }
+    System.out.println("Porcentaje semanal: "+ (((cont*100))/72)+"%");
+  }
+
+
+
+
+
+
 }

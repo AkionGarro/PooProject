@@ -16,6 +16,7 @@ public class Curso {
     private byte horasLectivas;
     private byte horaInicio;
     private byte horaFinal;
+    private byte dia;
     private String estado;
     public ArrayList<Carrera> carrerasLista = new ArrayList<Carrera>();
     private int numeroGrupo;
@@ -27,13 +28,14 @@ public class Curso {
     //
 
 
-    public Curso(String nombre, byte creditos, byte horasLectivas, byte horaInicio, byte horaFinal, String estado,ArrayList<Carrera> carreras,int numeroGrupo) {
+    public Curso(String nombre, byte creditos, byte horasLectivas, byte horaInicio, byte horaFinal,byte dia ,String estado,ArrayList<Carrera> carreras,int numeroGrupo) {
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasLectivas = horasLectivas;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
         this.estado = estado;
+        this.dia =dia;
         this.numeroGrupo=numeroGrupo;
         this.addCarreras(carreras);
     }
@@ -206,5 +208,29 @@ public class Curso {
     public void setTiempoDedicacion(byte creditos,byte horas) {
         byte temp = (byte) (creditos * 3);
         this.tiempoDedicacion = (byte)(temp - horas);
+    }
+
+    public byte getDia() {
+        return dia;
+    }
+
+    public void setDia(byte dia) {
+        this.dia = dia;
+    }
+
+    public int getNumeroGrupo() {
+        return numeroGrupo;
+    }
+
+    public void setNumeroGrupo(int numeroGrupo) {
+        this.numeroGrupo = numeroGrupo;
+    }
+
+    public byte getTiempoDedicacion() {
+        return tiempoDedicacion;
+    }
+
+    public void setTiempoDedicacion(byte tiempoDedicacion) {
+        this.tiempoDedicacion = tiempoDedicacion;
     }
 }

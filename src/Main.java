@@ -30,23 +30,23 @@ public class Main {
         ArrayList<Carrera> carrerasCC = new ArrayList<Carrera>();
         carrerasCC.add(carreras.get(0));
         carrerasCC.add(carreras.get(1));
-        Curso pcs1 = new Curso("CC", (byte) 4, (byte) 4, (byte) 8, (byte) 12, "Aprobado", carrerasCC, 01);
+        Curso pcs1 = new Curso("CC", (byte) 4, (byte) 4, (byte) 0, (byte) 4,(byte) 1, "encurso", carrerasCC, 01);
 
         ArrayList<Carrera> carrerasCA = new ArrayList<Carrera>();
         carrerasCA.add(carreras.get(1));
         carrerasCA.add(carreras.get(2));
-        Curso pcs2 = new Curso("CA", (byte) 4, (byte) 4, (byte) 8, (byte) 12, "Aprobado", carrerasCA, 02);
+        Curso pcs2 = new Curso("CA", (byte) 4, (byte) 4, (byte) 2, (byte) 6, (byte) 2,"encurso", carrerasCA, 02);
 
         ArrayList<Carrera> carrerasCompi = new ArrayList<Carrera>();
         carrerasCompi.add(carreras.get(2));
         carrerasCompi.add(carreras.get(3));
-        Curso pcs3 = new Curso("Compiladores", (byte) 4, (byte) 4, (byte) 8, (byte) 12, "Aprobado", carrerasCompi, 03);
+        Curso pcs3 = new Curso("Compiladores", (byte) 2, (byte) 2, (byte) 0, (byte) 2,(byte) 3 ,"encurso", carrerasCompi, 03);
 
 
         ArrayList<Carrera> carrerasPOO = new ArrayList<Carrera>();
         carrerasPOO.add(carreras.get(3));
         carrerasPOO.add(carreras.get(4));
-        Curso pcs4 = new Curso("POO", (byte) 4, (byte) 4, (byte) 8, (byte) 12, "Aprobado", carrerasPOO, 04);
+        Curso pcs4 = new Curso("POO", (byte) 4, (byte) 4, (byte) 4, (byte) 7, (byte) 4, "encurso", carrerasPOO, 04);
 
         cursos.add(pcs1);
         cursos.add(pcs2);
@@ -96,6 +96,7 @@ public class Main {
             System.out.println("9.Cambiar carrera Estudiante");
             System.out.println("10.Obtener cursos del semestre actual");
             System.out.println("11.Registrar actividades");
+            System.out.println("12.Agenda semanal");
 
             System.out.println("Digite una opcion: ");
             option = sc2.nextInt();
@@ -154,6 +155,11 @@ public class Main {
                     agregarActividad(estAc, cursos);
                     break;
 
+                case 12:
+                    Estudiante report = seleccionarEstudiantes(estudiantes);
+                    report.agendaSemanal();
+                    break;
+
 
                 case 0:
                     System.exit(0);
@@ -209,6 +215,7 @@ public class Main {
         String estadoCurso = "";
         ArrayList<Carrera> carrerasCurso = new ArrayList<Carrera>();
         int numeroGrupoCurso = 0;
+        byte dia=0;
 
         System.out.println("Digite el nombre del curso:");
         nombreCurso = sctemp.nextLine();
@@ -225,7 +232,11 @@ public class Main {
         carrerasCurso = seleccionarCarreras(carreras);
         System.out.println("Digite el numero de grupo del curso:");
         numeroGrupoCurso = sctemp.nextInt();
-        Curso cr1 = new Curso(nombreCurso, creditosCurso, horasLectivasCurso, horaInicioCurso, horaFinalCurso, estadoCurso, carrerasCurso, numeroGrupoCurso);
+        sctemp.nextLine();
+        System.out.println("Digite el dia de clases:");
+        dia = sctemp.nextByte();
+        sctemp.nextLine();
+        Curso cr1 = new Curso(nombreCurso, creditosCurso, horasLectivasCurso, horaInicioCurso, horaFinalCurso, dia,estadoCurso, carrerasCurso, numeroGrupoCurso);
         cr1.setTiempoDedicacion(creditosCurso, horasLectivasCurso);
         return cr1;
 
@@ -470,42 +481,59 @@ public class Main {
         switch (n) {
             case 1:
                 String nombre = "";
-                String tiempoEjecucion = "";
-                Byte horas = 0;
+                byte horaInc=0;
+                byte horaFin=0;
+                byte horasAc = 0;
+                byte diaAc=0;
+                String descrip="";
                 System.out.println("Digite el nombre de la actividad:");
                 nombre = sctemp.nextLine();
                 sctemp.nextLine();
-                System.out.println("Digite el tiempo ejecucion:");
-                tiempoEjecucion = sctemp.nextLine();
+                System.out.println("Digite la hora de inicio:");
+                horaInc = sctemp.nextByte();
                 sctemp.nextLine();
-                System.out.println("Digite las horas:");
-                horas = sctemp.nextByte();
+                System.out.println("Digite al hora final:");
+                horaFin = sctemp.nextByte();
                 sctemp.nextLine();
-                ActividadRecreativa ar = new ActividadRecreativa(nombre, tiempoEjecucion, horas);
+                System.out.println("Digite la cantidad de horas:");
+                horasAc = sctemp.nextByte();
+                sctemp.nextLine();
+                System.out.println("Digite el dia:");
+                diaAc = sctemp.nextByte();
+                sctemp.nextLine();
+                System.out.println("Digite la descripcion de la actividad:");
+                descrip = sctemp.nextLine();
+                sctemp.nextLine();
+
+                ActividadRecreativa ar = new ActividadRecreativa(nombre,horaInc,horaFin,horasAc,diaAc,descrip);
                 estudiante.addActividades(ar);
                 break;
             case 2:
 
                 String nombreActividad = "";
                 String descripcionCurso = "";
-                String fechaInicio = "";
-                String fechaFinal = "";
+                byte fechaInicio = 0;
+                byte fechaFinal = 0;
+                byte dia=0;
                 System.out.println("Digite el nombre de la actividad:");
                 nombreActividad = sctemp.nextLine();
                 sctemp.nextLine();
                 System.out.println("Digite la descripcion del curso:");
                 descripcionCurso = sctemp.nextLine();
                 sctemp.nextLine();
-                System.out.println("Digite la fecha de inicio:");
-                fechaInicio = sctemp.nextLine();
+                System.out.println("Digite la hora de inicio:");
+                fechaInicio = sctemp.nextByte();
                 sctemp.nextLine();
-                System.out.println("Digite al fecha final:");
-                fechaFinal = sctemp.nextLine();
+                System.out.println("Digite al hora final:");
+                fechaFinal = sctemp.nextByte();
+                sctemp.nextLine();
+                System.out.println("Digite el dia:");
+                dia = sctemp.nextByte();
                 sctemp.nextLine();
                 Curso crs1 = seleccionarCurso(cursos);
                 if (estudiante.validarCursoCarrera(crs1) == true && estudiante.validarCursoActivo(crs1)) {
 
-                    ActividadCurso ar2 = new ActividadCurso(nombreActividad, descripcionCurso, crs1, fechaInicio, fechaFinal);
+                    ActividadCurso ar2 = new ActividadCurso(nombreActividad, descripcionCurso, crs1, fechaInicio, fechaFinal,dia);
                     estudiante.addActividades(ar2);
                 }else{
                     System.out.println("Curso no está activo ");
@@ -516,19 +544,27 @@ public class Main {
             case 3:
                 String nombreEvaluacion = "";
                 String tipo = "";
-                int tiempo = 0;
+                byte hrInicio = 0;
+                byte hrFin = 0;
+                byte diaEv = 0;
                 System.out.println("Digite el nombre de la evalacion:");
                 nombreEvaluacion = sctemp.nextLine();
                 sctemp.nextLine();
                 System.out.println("Digite el tipo de la evaluacion:");
                 tipo = sctemp.nextLine();
                 sctemp.nextLine();
-                System.out.println("Digite el tiempo de la evaluacion:");
-                tiempo = sctemp.nextInt();
+                System.out.println("Digite la hora de incio:");
+                hrInicio = sctemp.nextByte();
+                sctemp.nextLine();
+                System.out.println("Digite la hora final:");
+                hrFin = sctemp.nextByte();
+                sctemp.nextLine();
+                System.out.println("Digite el dia:");
+                diaEv = sctemp.nextByte();
                 sctemp.nextLine();
                 Curso cursoAsociado = seleccionarCurso(cursos);
                 if (estudiante.validarCursoCarrera(cursoAsociado) == true && estudiante.validarCursoActivo(cursoAsociado)) {
-                    Evaluaciones e1 = new Evaluaciones(nombreEvaluacion, tipo, tiempo, cursoAsociado);
+                    Evaluaciones e1 = new Evaluaciones(nombreEvaluacion, tipo, hrInicio, hrFin,diaEv,cursoAsociado);
                     estudiante.addActividades(e1);
                 }else{
                     System.out.println("Curso no está activo ");

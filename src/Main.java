@@ -93,7 +93,8 @@ public class Main {
             System.out.println("6.Ingresar Cursos a un Semestre");    //--Esto debe de cambiarse a la clase
             System.out.println("7.Mostrar Cursos de un Semestre");      //--Esto debe de cambiarse a la clase
             System.out.println("8.Manipular estados de los Cursos de un Semestre"); //--Esto debe de cambiarse a la clase
-            System.out.println("9.Obtener cursos del semestre actual");
+            System.out.println("9.Cambiar carrera Estudiante");
+            System.out.println("10.Obtener cursos del semestre actual");
 
             System.out.println("Digite una opcion: ");
             option = sc2.nextInt();
@@ -132,6 +133,11 @@ public class Main {
                     Estudiante e3 = seleccionarEstudiantes(estudiantes);
                     ArrayList<Curso> s1 = seleccionarCursosSemestre(e3);
                     manipularEstadoCursosSemestre(s1);
+                    break;
+                case 9:
+                    Estudiante e4 = seleccionarEstudiantes(estudiantes);
+                    Carrera carreratemp = seleccionarCarrera(carreras,e4);
+                    e4.cambiarCarrera(carreratemp);
                     break;
 
                 case 0:
@@ -239,6 +245,24 @@ public class Main {
 
     }
 
+    public static Carrera seleccionarCarrera(ArrayList<Carrera> carrerasMain,Estudiante estudiante) {
+
+        System.out.println("----------------Carreras disponibles para cambio----------");
+        for (int i = 0; i < carrerasMain.size(); i++) {
+            System.out.println("i: " + i + " Nombre:" + carrerasMain.get(i).getNombre());
+        }
+        Scanner sctemp = new Scanner(System.in);
+        Carrera tempCarreras;
+        int n = 0;
+        System.out.println("");
+        System.out.println("Digite la carrera a la que desea cambiar:");
+        n = sctemp.nextInt();
+        sctemp.nextLine();
+        tempCarreras =  carrerasMain.get(n);
+
+        return tempCarreras;
+
+    }
 
     public static Estudiante ingresarEstudiantes(ArrayList<Carrera> carreras) {
         Scanner sctemp = new Scanner(System.in);

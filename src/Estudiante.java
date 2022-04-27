@@ -104,6 +104,16 @@ public class Estudiante {
    */
   public void cambiarCarrera(Carrera carrera)
   {
+    Scanner sctemp = new Scanner(System.in);
+    int temp =0;
+    for (int i = 0; i < this.carreras.size(); i++) {
+      System.out.println("i: " + i + " Nombre:" + this.carreras.get(i).getNombre());
+    }
+    System.out.println("Digite la carrera que desea cambiar: ");
+    temp = sctemp.nextInt();
+    sctemp.nextLine();
+    this.carreras.set(temp,carrera);
+
   }
 
 

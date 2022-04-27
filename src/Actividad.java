@@ -16,11 +16,7 @@ abstract public class Actividad {
   //
   // Constructors
   //
-  public Actividad () { };
 
-  public Actividad(String nombre) {
-    this.nombre = nombre;
-  }
 
   public Actividad(String nombre, byte horaInicio, byte horaFinal, byte dia) {
     this.nombre = nombre;
@@ -107,4 +103,6 @@ abstract public class Actividad {
   public void setDia(byte dia) {
     this.dia = dia;
   }
+
+
 }

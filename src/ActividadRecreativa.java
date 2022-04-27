@@ -9,9 +9,7 @@ public class ActividadRecreativa extends Actividad{
   // Fields
   //
 
-  private byte horaInicio;
-  private byte horaFinal;
-  private byte dia;
+
   private byte horas;
   private String descripcion;
 
@@ -20,15 +18,12 @@ public class ActividadRecreativa extends Actividad{
   // Constructors
   //
 
-  public ActividadRecreativa(String nombre, byte horaInicio, byte horaFinal, byte horas, byte dia, String descripcion) {
-    super(nombre);
-    this.horaInicio = horaInicio;
-    this.horaFinal = horaFinal;
-    this.horas = horas;
-    this.dia = dia;
-    this.descripcion = descripcion;
-  }
 
+  public ActividadRecreativa(String nombre, byte horaInicio, byte horaFinal,byte horasAc, byte dia,String descripcion) {
+    super(nombre, horaInicio, horaFinal, dia);
+    this.horas = horasAc;
+    this.descripcion=descripcion;
+  }
 
   //
   // Methods
@@ -61,33 +56,10 @@ public class ActividadRecreativa extends Actividad{
   //
 
 
-  public byte getHoraInicio() {
-    return horaInicio;
-  }
-
-  public void setHoraInicio(byte horaInicio) {
-    this.horaInicio = horaInicio;
-  }
-
-  public byte getHoraFinal() {
-    return horaFinal;
-  }
-
-  public void setHoraFinal(byte horaFinal) {
-    this.horaFinal = horaFinal;
-  }
-
   public void setHoras(byte horas) {
     this.horas = horas;
   }
 
-  public byte getDia() {
-    return dia;
-  }
-
-  public void setDia(byte dia) {
-    this.dia = dia;
-  }
 
   public String getDescripcion() {
     return descripcion;

@@ -10,24 +10,18 @@ public class Evaluaciones extends Actividad {
   //
 
   private String tipo;
-  private byte horaInicio;
-  private byte horaFinal;
-  private byte dia;
   private Curso cursoAsociado;
   
   //
   // Constructors
-  //
+  //Evaluaciones(nombreEvaluacion, tipo, hrInicio, hrFin,diaEv,cursoAsociado);
 
-  public Evaluaciones(String nombre, String tipo, byte horaInicio, byte horaFinal, byte dia, Curso cursoAsociado) {
-    super(nombre);
-    this.tipo = tipo;
-    this.horaInicio = horaInicio;
-    this.horaFinal = horaFinal;
-    this.dia = dia;
+
+  public Evaluaciones(String nombre, String tipo,byte horaInicio, byte horaFinal, byte dia,Curso cursoAsociado) {
+    super(nombre, horaInicio, horaFinal, dia);
     this.cursoAsociado = cursoAsociado;
+    this.tipo = tipo;
   }
-
 
   //
   // Methods
@@ -69,29 +63,6 @@ public class Evaluaciones extends Actividad {
     this.cursoAsociado = cursoAsociado;
   }
 
-  public byte getHoraInicio() {
-    return horaInicio;
-  }
 
-  public void setHoraInicio(byte horaInicio) {
-    this.horaInicio = horaInicio;
-  }
 
-  public byte getHoraFinal() {
-    return horaFinal;
-  }
-
-  public void setHoraFinal(byte horaFinal) {
-    this.horaFinal = horaFinal;
-  }
-
-  @Override
-  public byte getDia() {
-    return dia;
-  }
-
-  @Override
-  public void setDia(byte dia) {
-    this.dia = dia;
-  }
 }

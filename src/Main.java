@@ -80,6 +80,35 @@ public class Main {
         estudiantes.add(pe4);
 
 
+
+
+        /*                                            Agregar cursos semestre a un estudiante
+         obtener estudiante
+        hacer un arreglo de cursos
+        pe1.addCursoSemestre(pe1Ar);
+         */
+        ArrayList<Curso> pe1Ar =new ArrayList<Curso>();
+        pe1Ar.add(pcs1);
+        pe1Ar.add(pcs3);
+        pe1Ar.add(pcs4);
+        pe1.addCursoSemestre(pe1Ar);
+
+
+
+        /*                                            Agregar actividades  a un estudiante
+         obtener estudiante
+        crear una actividad
+        pe1.addActividades();
+         */
+
+        ActividadCurso acPe1 = new ActividadCurso("Proyecto Poo","Manejo tiempo",pcs4,(byte) 0,(byte)4,(byte)0);
+        ActividadCurso acPe2 = new ActividadCurso("Examen Poo","Primer examen progra",pcs1,(byte) 0,(byte)4,(byte)2);
+        ActividadCurso acPe3 = new ActividadCurso("Tarea Analisis","SubsetSum",pcs2,(byte) 0,(byte)4,(byte)4);
+        pe1.addActividades(acPe1);
+        pe1.addActividades(acPe2);
+        pe1.addActividades(acPe3);
+
+
         int option = 1;
 
         while (option != 0) {
@@ -96,7 +125,8 @@ public class Main {
             System.out.println("9.Cambiar carrera Estudiante");
             System.out.println("10.Obtener cursos del semestre actual");
             System.out.println("11.Registrar actividades");
-            System.out.println("12.Agenda semanal");
+            System.out.println("12.REPORTE semanal");
+            System.out.println("13.REPORTE DIA");
 
             System.out.println("Digite una opcion: ");
             option = sc2.nextInt();
@@ -157,7 +187,12 @@ public class Main {
 
                 case 12:
                     Estudiante report = seleccionarEstudiantes(estudiantes);
-                    report.agendaSemanal();
+                    report.reporteSemanal();
+                    break;
+
+                case 13:
+                    Estudiante report1 = seleccionarEstudiantes(estudiantes);
+                    report1.reporteDia();
                     break;
 
 

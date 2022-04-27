@@ -6,7 +6,15 @@ import java.util.*;
  * Class Estudiante
  */
 public class Estudiante {
-
+  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_BLACK = "\u001B[30m";
+  public static final String ANSI_RED = "\u001B[31m";
+  public static final String ANSI_GREEN = "\u001B[32m";
+  public static final String ANSI_YELLOW = "\u001B[33m";
+  public static final String ANSI_BLUE = "\u001B[34m";
+  public static final String ANSI_PURPLE = "\u001B[35m";
+  public static final String ANSI_CYAN = "\u001B[36m";
+  public static final String ANSI_WHITE = "\u001B[37m";
   //
   // Fields
   //
@@ -14,6 +22,7 @@ public class Estudiante {
   private String nombreCompleto;
   private String usuario;
   private String contrasena;
+
 
   private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
   private ArrayList<Curso> cursosActuales = new ArrayList<Curso>();
@@ -277,9 +286,9 @@ public class Estudiante {
 
   }
 
-  public void agendaSemanal(){
+  public void crearHorario(){
     setCursosSemestreActual();
-    int cont=0;
+
 
     //Bucle para llenar la matriz con los cursos
     for(int i=0;i<this.cursosActuales.size();i++){
@@ -290,26 +299,15 @@ public class Estudiante {
       for(byte j=posActual;j<posFinal;j++){
         if(this.semana[j][dia]==null){
           this.semana[j][dia] = "Clases "+temp.getNombre();
-          cont++;
         }else{
           System.out.println("Se presenta un choque de horario");
         }
       }
 
-      //Bucle para llenar la matriz con actividades.
 
-
-      for(byte j=posActual;j<posFinal;j++){
-        if(this.semana[j][dia]==null){
-          this.semana[j][dia] = "Clases "+temp.getNombre();
-          cont++;
-        }else{
-          System.out.println("Se presenta un choque de horario");
-        }
-      }
     }
 
-
+    //Bucle para llenar la matriz con actividades.
     for(int i=0;i<this.actividades.size();i++) {
       Actividad tempAct = this.actividades.get(i);
       byte posActual = tempAct.getHoraInicio();
@@ -318,18 +316,25 @@ public class Estudiante {
       for (byte j = posActual; j < posFinal; j++) {
         if (this.semana[j][dia] == null) {
           this.semana[j][dia] = "Actividad " + tempAct.getNombre();
-          cont++;
+
         } else {
           System.out.println("Se presenta un choque de horario");
         }
       }
     }
+
+  }
+
+
+  public void reporteSemanal(){
+    crearHorario();
+    int cont=0;
     for(int i=0;i<7;i++){
       System.out.println("Dia numero: "+(i+1));
       for(int j=0;j<12;j++){
-
         if(semana[j][i]!=null){
-          System.out.print("Hora: "+(j+1) +" "+ semana[j][i]+"  ");
+          cont++;
+          System.out.print(ANSI_GREEN+ "Hora: "+(j+1) +" "+ semana[j][i]+"  "+ANSI_RESET);
         }else{
           System.out.print("Hora: "+(j+1) + " Vacio  ");
         }
@@ -339,6 +344,41 @@ public class Estudiante {
     }
     System.out.println("Porcentaje semanal: "+ (((cont*100))/72)+"%");
   }
+
+  public void reporteDia(){
+    Scanner sctemp = new Scanner(System.in);
+    int diaReporte = 0;
+    System.out.println("Digite el dia que desea generar el reporte: ");
+    if(diaReporte>0 && diaReporte<7){
+      diaReporte = sctemp.nextInt();
+    }else{
+      System.out.println("Ha digitado un dia incorrecto");
+    }
+
+    sctemp.nextLine();
+
+    crearHorario();
+    int cont=0;
+      System.out.println("Dia numero: "+(diaReporte+1));
+
+      for(int j=0;j<12;j++){
+        if(semana[j][diaReporte]!=null){
+          cont++;
+          System.out.print(ANSI_GREEN+ "Hora: "+(j+1) +" "+ semana[j][diaReporte]+"  "+ANSI_RESET);
+        }else{
+          System.out.print("Hora: "+(j+1) + " Vacio  ");
+        }
+      }
+
+
+    System.out.println("Porcentaje dia: "+ (((cont*100))/12)+"%");
+  }
+
+
+
+
+
+
 
 
 

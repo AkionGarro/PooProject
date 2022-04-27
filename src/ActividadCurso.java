@@ -11,26 +11,19 @@ public class ActividadCurso extends Actividad{
 
   private String descripcion;
   private Curso cursoAsociado;
-  private byte horaInicio;
-  private byte horaFinal;
-  private byte dia;
 
-
-
-  public ActividadCurso(String nombre, String descripcion, Curso cursoAsociado, byte fechaInicio, byte fechaFinal,byte dia) {
-    super(nombre);
-    this.descripcion = descripcion;
-    this.cursoAsociado = cursoAsociado;
-    this.horaInicio = fechaInicio;
-    this.horaFinal = fechaFinal;
-    this.dia = dia;
-  }
 
   //
   // Constructors
   //
-  public ActividadCurso () { };
-  
+
+  public ActividadCurso(String nombre,String descripcion,Curso cursoAsociado, byte horaInicio, byte horaFinal, byte dia) {
+    super(nombre, horaInicio, horaFinal, dia);
+    this.descripcion = descripcion;
+    this.cursoAsociado = cursoAsociado;
+  }
+
+
   //
   // Methods
   //
@@ -72,29 +65,6 @@ public class ActividadCurso extends Actividad{
     return cursoAsociado;
   }
 
-  public byte getHoraInicio() {
-    return horaInicio;
-  }
-
-  public void setHoraInicio(byte horaInicio) {
-    this.horaInicio = horaInicio;
-  }
-
-  public byte getHoraFinal() {
-    return horaFinal;
-  }
-
-  public void setHoraFinal(byte horaFinal) {
-    this.horaFinal = horaFinal;
-  }
-
-  public byte getDia() {
-    return dia;
-  }
-
-  public void setDia(byte dia) {
-    this.dia = dia;
-  }
 
 
 

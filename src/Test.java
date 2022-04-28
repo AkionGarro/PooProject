@@ -14,7 +14,7 @@ public class Test {
 
         //Registro de carreras.
 
-        //Registro de carreras.
+//Registro de carreras.
 
         Carrera pc1 = new Carrera("Computacion", "IC01", (byte) 8);
         Carrera pc2 = new Carrera("Computadores", "CE01", (byte) 10);
@@ -33,17 +33,17 @@ public class Test {
         ArrayList<Carrera> carrerasCC = new ArrayList<Carrera>();
         carrerasCC.add(carreras.get(0));
         carrerasCC.add(carreras.get(1));
-        Curso pcs1 = new Curso("CC", (byte) 4, (byte) 4, (byte) 0, (byte) 4,(byte) 1, "encurso", carrerasCC, 01);
+        Curso pcs1 = new Curso("CC", (byte) 4, (byte) 4, (byte) 0, (byte) 4, (byte) 1, "encurso", carrerasCC, 01);
 
         ArrayList<Carrera> carrerasCA = new ArrayList<Carrera>();
         carrerasCA.add(carreras.get(1));
         carrerasCA.add(carreras.get(2));
-        Curso pcs2 = new Curso("CA", (byte) 4, (byte) 4, (byte) 2, (byte) 6, (byte) 2,"encurso", carrerasCA, 02);
+        Curso pcs2 = new Curso("CA", (byte) 4, (byte) 4, (byte) 2, (byte) 6, (byte) 2, "encurso", carrerasCA, 02);
 
         ArrayList<Carrera> carrerasCompi = new ArrayList<Carrera>();
         carrerasCompi.add(carreras.get(2));
         carrerasCompi.add(carreras.get(3));
-        Curso pcs3 = new Curso("Compiladores", (byte) 2, (byte) 2, (byte) 0, (byte) 2,(byte) 3 ,"encurso", carrerasCompi, 03);
+        Curso pcs3 = new Curso("Compiladores", (byte) 2, (byte) 2, (byte) 0, (byte) 2, (byte) 3, "encurso", carrerasCompi, 03);
 
 
         ArrayList<Carrera> carrerasPOO = new ArrayList<Carrera>();
@@ -90,7 +90,7 @@ public class Test {
         hacer un arreglo de cursos
         pe1.addCursoSemestre(pe1Ar);
          */
-        ArrayList<Curso> pe1Ar =new ArrayList<Curso>();
+        ArrayList<Curso> pe1Ar = new ArrayList<Curso>();
         pe1Ar.add(pcs1);
         pe1Ar.add(pcs3);
         pe1Ar.add(pcs4);
@@ -104,13 +104,12 @@ public class Test {
         pe1.addActividades();
          */
 
-        ActividadCurso acPe1 = new ActividadCurso("Proyecto Poo","Manejo tiempo",pcs4,(byte) 0,(byte)4,(byte)0);
-        ActividadCurso acPe2 = new ActividadCurso("Examen Poo","Primer examen progra",pcs1,(byte) 0,(byte)4,(byte)2);
-        ActividadCurso acPe3 = new ActividadCurso("Tarea Analisis","SubsetSum",pcs2,(byte) 0,(byte)4,(byte)4);
+        ActividadCurso acPe1 = new ActividadCurso("Proyecto Poo", "Manejo tiempo", pcs4, (byte) 0, (byte) 4, (byte) 0);
+        ActividadCurso acPe2 = new ActividadCurso("Examen Poo", "Primer examen progra", pcs1, (byte) 0, (byte) 4, (byte) 2);
+        ActividadCurso acPe3 = new ActividadCurso("Tarea Analisis", "SubsetSum", pcs2, (byte) 0, (byte) 4, (byte) 4);
         pe1.addActividades(acPe1);
         pe1.addActividades(acPe2);
         pe1.addActividades(acPe3);
-
 
 
         //Registro

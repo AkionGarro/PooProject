@@ -3,71 +3,76 @@
 /**
  * Class ActividadRecreativa
  */
-public class ActividadRecreativa extends Actividad{
+public class ActividadRecreativa extends Actividad {
 
-  //
-  // Fields
-  //
-
-
-  private byte horas;
-  private String descripcion;
-
-  
-  //
-  // Constructors
-  //
+    //
+    // Fields
+    //
 
 
-  public ActividadRecreativa(String nombre, byte horaInicio, byte horaFinal,byte horasAc, byte dia,String descripcion) {
-    super(nombre, horaInicio, horaFinal, dia);
-    this.horas = horasAc;
-    this.descripcion=descripcion;
-  }
-
-  //
-  // Methods
-  //
+    private byte horas;
+    private String descripcion;
 
 
-  //
-  // Accessor methods
-  //
+    /**
+     * Constructor of the class
+     *
+     * @param nombre      new name
+     * @param horaInicio  the value of new horaInicio
+     * @param horaFinal   the value of new horaFinal
+     * @param horasAc     the value of new horasAc
+     * @param dia         the value of new dia
+     * @param descripcion the value of new description
+     */
 
 
-  /**
-   * Set the value of horas
-   * @param newVar the new value of horas
-   */
-  public void setHoras (Byte newVar) {
-    horas = newVar;
-  }
-
-  /**
-   * Get the value of horas
-   * @return the value of horas
-   */
-  public Byte getHoras () {
-    return horas;
-  }
-
-  //
-  // Other methods
-  //
+    public ActividadRecreativa(String nombre, byte horaInicio, byte horaFinal, byte horasAc, byte dia, String descripcion) {
+        super(nombre, horaInicio, horaFinal, dia);
+        this.horas = horasAc;
+        this.descripcion = descripcion;
+    }
 
 
-  public void setHoras(byte horas) {
-    this.horas = horas;
-  }
+    //
+    // Accessor methods
+    //
+
+    /**
+     * Get the value of horas
+     *
+     * @return the value of horas
+     */
+    public Byte getHoras() {
+        return horas;
+    }
 
 
-  public String getDescripcion() {
-    return descripcion;
-  }
+    /**
+     * Set the new value of horas
+     *
+     * @param horas
+     */
+    public void setHoras(byte horas) {
+        this.horas = horas;
+    }
 
-  public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-  }
+    /**
+     * Method to get the description of actividad
+     *
+     * @return descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Set the new descripcion
+     *
+     * @param descripcion
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
 
 }

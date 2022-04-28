@@ -28,9 +28,10 @@ public class Carrera {
         this.semestresTotales = semestresTotales;
         this.nombresLista.add(nombre);
 
-
     }
-//
+
+
+    //
     // Methods
     //
 
@@ -112,7 +113,7 @@ public class Carrera {
      */
     public void addCursos(Curso new_object) {
         cursosLista.add(new_object);
-       // showData();
+        // showData();
     }
 
     /**
@@ -136,7 +137,96 @@ public class Carrera {
         for (int i = 0; i < this.cursosLista.size(); i++) {
             System.out.println(this.cursosLista.get(i).getNombre());
         }
+    }
+
+    /**
+     * Method to show the names of the avaliable carreers
+     * @param carreras
+     */
+    public static void mostrarCarreras(ArrayList<Carrera> carreras) {
+        System.out.println("-----------------------Carreras disponibles----------------------");
+        for (int i = 0; i < carreras.size(); i++) {
+            System.out.println("Carrera " + i + ": " + carreras.get(i).getNombre());
+        }
+        System.out.println("-----------------------------------------------------------------");
+    }
+
+
+    /**
+     * Method to select the carreers to the student joined
+     * @param carrerasMain
+     * @return
+     */
+    public static ArrayList<Carrera> seleccionarCarreras(ArrayList<Carrera> carrerasMain) {
+        for (int i = 0; i < carrerasMain.size(); i++) {
+            System.out.println("i: " + i + " Nombre:" + carrerasMain.get(i).getNombre());
+        }
+        Scanner sctemp = new Scanner(System.in);
+        ArrayList<Carrera> tempCarreras = new ArrayList<Carrera>();
+        int n = 0;
+        System.out.println("Digite la cantidad de carreras a las que pertenece:");
+        n = sctemp.nextInt();
+        sctemp.nextLine();
+        for (int i = 0; i < n; i++) {
+            int temp = 0;
+            System.out.println("Digite la carrera que desea agregar:");
+            temp = sctemp.nextInt();
+            tempCarreras.add(carrerasMain.get(temp));
+        }
+        return tempCarreras;
 
     }
+
+    /**
+     * Method to add new carreer
+     * @return
+     */
+
+    public static Carrera ingresarCarreras() {
+        Carrera.getListaNombres();
+        Scanner sctemp = new Scanner(System.in);
+        String nombreCarrera = "";
+        String codigoCarrera = "";
+        byte semestresTotalesCarrera = 0;
+
+        System.out.println("Digite el nombre de la carrera:");
+        nombreCarrera = sctemp.nextLine();
+        sctemp.nextLine();
+        System.out.println("Digite el codigo de la carrera:");
+        codigoCarrera = sctemp.nextLine();
+        sctemp.nextLine();
+        System.out.println("Digite la cantidad de semestres:");
+        semestresTotalesCarrera = sctemp.nextByte();
+        sctemp.nextLine();
+        Carrera c1 = new Carrera(nombreCarrera, codigoCarrera, semestresTotalesCarrera);
+        return c1;
+    }
+
+
+    /**
+     * Method to select a new carrer
+     * @param carrerasMain
+     * @param estudiante
+     * @return
+     */
+    public static Carrera seleccionarCarrera(ArrayList<Carrera> carrerasMain, Estudiante estudiante) {
+
+        System.out.println("----------------Carreras disponibles para cambio----------");
+        for (int i = 0; i < carrerasMain.size(); i++) {
+            System.out.println("i: " + i + " Nombre:" + carrerasMain.get(i).getNombre());
+        }
+        Scanner sctemp = new Scanner(System.in);
+        Carrera tempCarreras;
+        int n = 0;
+        System.out.println("");
+        System.out.println("Digite la carrera a la que desea cambiar:");
+        n = sctemp.nextInt();
+        sctemp.nextLine();
+        tempCarreras = carrerasMain.get(n);
+
+        return tempCarreras;
+
+    }
+
 
 }

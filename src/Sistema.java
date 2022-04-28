@@ -11,6 +11,7 @@ public class Sistema {
 
         int option = 1;
 
+        // Hacer uso de los datos brindados en test para una ejecución mas rapida
         while (option != 0) {
             Scanner sc = new Scanner(System.in);
             System.out.println("------------Menu opciones------------");

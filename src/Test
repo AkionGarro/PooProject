@@ -1,21 +1,3 @@
-import javax.swing.text.Caret;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Test {
-    public static void main(String[] args) {
-
-
-        Scanner sc2 = new Scanner(System.in);
-        ArrayList<Curso> cursos = new ArrayList<Curso>();
-        ArrayList<Carrera> carreras = new ArrayList<Carrera>();
-        ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
-        ArrayList<Actividad> actividades = new ArrayList<Actividad>();
-
-        //Registro de carreras.
-
-//Registro de carreras.
-
         Carrera pc1 = new Carrera("Computacion", "IC01", (byte) 8);
         Carrera pc2 = new Carrera("Computadores", "CE01", (byte) 10);
         Carrera pc3 = new Carrera("Administracion", "AD01", (byte) 8);
@@ -110,8 +92,3 @@ public class Test {
         pe1.addActividades(acPe1);
         pe1.addActividades(acPe2);
         pe1.addActividades(acPe3);
-
-
-        //Registro
-    }
-}
